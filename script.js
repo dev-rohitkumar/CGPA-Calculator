@@ -109,6 +109,15 @@ Total Points: ${totalPoints}
  * Download CGPA report as PDF
  */
 function downloadPDF() {
+  // Prompt user for their name
+  const studentName = prompt("Please enter your name for the CGPA report:");
+  
+  // If user cancels or enters empty name, don't proceed
+  if (!studentName || studentName.trim() === '') {
+    alert("Name is required to generate the PDF report.");
+    return;
+  }
+  
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
   
@@ -118,7 +127,7 @@ function downloadPDF() {
   
   // Simple header with minimal gradient
   doc.setFillColor(102, 126, 234);
-  doc.rect(0, 0, 210, 40, 'F');
+  doc.rect(0, 0, 210, 50, 'F');
   
   // Clean title
   doc.setFontSize(22);
@@ -126,34 +135,40 @@ function downloadPDF() {
   doc.setFont(undefined, 'bold');
   doc.text('CGPA Calculator Report', 105, 20, { align: 'center' });
   
+  // Student name
+  doc.setFontSize(16);
+  doc.setTextColor(255, 255, 255);
+  doc.setFont(undefined, 'bold');
+  doc.text(`Student: ${studentName.trim()}`, 105, 32, { align: 'center' });
+  
   // Date
   doc.setFontSize(11);
   doc.setTextColor(255, 255, 255);
   doc.setFont(undefined, 'normal');
   const currentDate = new Date();
   const formattedDate = `${currentDate.getDate().toString().padStart(2, '0')}/${(currentDate.getMonth() + 1).toString().padStart(2, '0')}/${currentDate.getFullYear()}`;
-  doc.text(`Generated on: ${formattedDate}`, 105, 30, { align: 'center' });
+  doc.text(`Generated on: ${formattedDate}`, 105, 42, { align: 'center' });
   
   // Table headers
   doc.setFillColor(240, 240, 240);
-  doc.rect(20, 60, 170, 15, 'F');
+  doc.rect(20, 70, 170, 15, 'F');
   
   doc.setFontSize(12);
   doc.setTextColor(0, 0, 0);
   doc.setFont(undefined, 'bold');
-  doc.text('Subject', 25, 70);
-  doc.text('Credits', 90, 70);
-  doc.text('Grade', 120, 70);
-  doc.text('Points', 150, 70);
+  doc.text('Subject', 25, 80);
+  doc.text('Credits', 90, 80);
+  doc.text('Grade', 120, 80);
+  doc.text('Points', 150, 80);
   
   // Table border
   doc.setDrawColor(200, 200, 200);
   doc.setLineWidth(0.5);
-  doc.rect(20, 60, 170, 15);
+  doc.rect(20, 70, 170, 15);
   
   // Table data
   const rows = document.getElementById('subjectTable').getElementsByTagName('tbody')[0].rows;
-  let yPosition = 85;
+  let yPosition = 95;
   let totalCredits = 0;
   let totalPoints = 0;
   
@@ -253,8 +268,9 @@ function downloadPDF() {
   doc.setFont(undefined, 'normal');
   doc.text('Made with Love by Rohit | CGPA Calculator © 2025', 105, 280, { align: 'center' });
   
-  // Save the PDF
-  doc.save(`CGPA_Report_${formattedDate.replace(/\//g, '-')}.pdf`);
+  // Save the PDF with student name in filename
+  const sanitizedName = studentName.trim().replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '_');
+  doc.save(`CGPA_Report_${sanitizedName}_${formattedDate.replace(/\//g, '-')}.pdf`);
 }
 
 /**
