@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manual CGPA Calculator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <h1>
+    <div class="icon-container">
+      <svg width="60" height="60" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <!-- Gradient definitions -->
+        <defs>
+          <linearGradient id="bgGradientTitle" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+          </linearGradient>
+          <linearGradient id="chartGradientTitle" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#ff6b6b;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#feca57;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#48dbfb;stop-opacity:1" />
+          </linearGradient>
+          <radialGradient id="glowGradientTitle" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.4" />
+            <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
+          </radialGradient>
+        </defs>
+        
+        <!-- Background with gradient -->
+        <rect width="200" height="200" rx="25" fill="url(#bgGradientTitle)"/>
+        
+        <!-- Enhanced glow effect -->
+        <circle cx="100" cy="100" r="85" fill="url(#glowGradientTitle)"/>
+        
+        <!-- Main C shape with enhanced 3D effect -->
+        <path d="M 70 50 Q 50 50 50 70 L 50 130 Q 50 150 70 150 L 90 150 Q 110 150 110 130 L 110 125 L 100 125 L 100 135 Q 100 140 95 140 L 70 140 Q 65 140 65 135 L 65 65 Q 65 60 70 60 L 95 60 Q 100 60 100 65 L 100 75 L 110 75 L 110 70 Q 110 50 90 50 L 70 50 Z" fill="#ffffff" opacity="0.95" stroke="#f0f0f0" stroke-width="1"/>
+        
+        <!-- Enhanced dynamic chart bars -->
+        <rect x="120" y="90" width="10" height="20" rx="5" fill="url(#chartGradientTitle)">
+          <animate attributeName="height" values="20;40;20" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="90;70;90" dur="2s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="134" y="80" width="10" height="30" rx="5" fill="url(#chartGradientTitle)">
+          <animate attributeName="height" values="30;50;30" dur="2.5s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="80;60;80" dur="2.5s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="148" y="70" width="10" height="40" rx="5" fill="url(#chartGradientTitle)">
+          <animate attributeName="height" values="40;60;40" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="70;50;70" dur="3s" repeatCount="indefinite"/>
+        </rect>
+        
+        <!-- Enhanced floating grade points -->
+        <circle cx="130" cy="45" r="5" fill="#ff6b6b" opacity="0.9">
+          <animate attributeName="cy" values="45;30;45" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.9;1;0.9" dur="3s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="145" cy="40" r="4" fill="#feca57" opacity="0.8">
+          <animate attributeName="cy" values="40;25;40" dur="2.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.8;1;0.8" dur="2.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="160" cy="50" r="3" fill="#48dbfb" opacity="0.7">
+          <animate attributeName="cy" values="50;35;50" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        
+        <!-- Enhanced star achievement indicators -->
+        <polygon points="125,120 127,126 133,126 128,130 130,136 125,132 120,136 122,130 117,126 123,126" fill="#ffd700" stroke="#ffed4e" stroke-width="0.5">
+          <animateTransform attributeName="transform" type="rotate" values="0 125 128;360 125 128" dur="4s" repeatCount="indefinite"/>
+        </polygon>
+        <polygon points="145,125 146,128 149,128 147,130 148,133 145,131 142,133 143,130 141,128 144,128" fill="#ffd700" opacity="0.9" stroke="#ffed4e" stroke-width="0.5">
+          <animateTransform attributeName="transform" type="rotate" values="0 145 128;-360 145 128" dur="5s" repeatCount="indefinite"/>
+        </polygon>
+        
+        <!-- Enhanced progress arc -->
+        <path d="M 50 100 A 50 50 0 0 1 150 100" stroke="#ffffff" stroke-width="4" fill="none" opacity="0.8" stroke-dasharray="8,4">
+          <animate attributeName="stroke-dashoffset" values="0;-24" dur="1.5s" repeatCount="indefinite"/>
+        </path>
+        
+        <!-- Enhanced modern typography -->
+        <text x="100" y="175" font-family="Poppins, Arial, sans-serif" font-size="32" font-weight="bold" text-anchor="middle" fill="#ffffff" stroke="#e0e0e0" stroke-width="0.5">CGPA</text>
+        <text x="100" y="190" font-family="Poppins, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#ffffff" opacity="0.9">GRADE POINT AVERAGE</text>
+        
+        <!-- Enhanced geometric patterns -->
+        <circle cx="35" cy="35" r="3" fill="#ffffff" opacity="0.4">
+          <animate attributeName="opacity" values="0.4;0.8;0.4" dur="3s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="165" cy="165" r="3" fill="#ffffff" opacity="0.4">
+          <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2.5s" repeatCount="indefinite"/>
+        </circle>
+        <rect x="30" y="160" width="6" height="6" fill="#ffffff" opacity="0.3" rx="1">
+          <animate attributeName="opacity" values="0.3;0.7;0.3" dur="2s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="160" y="30" width="6" height="6" fill="#ffffff" opacity="0.3" rx="1">
+          <animate attributeName="opacity" values="0.3;0.7;0.3" dur="4s" repeatCount="indefinite"/>
+        </rect>
+      </svg>
+    </div>
+    Manual CGPA Calculator
+  </h1>
+
+  <table id="subjectTable">
+    <thead>
+      <tr>
+        <th>Subject</th>
+        <th>Credits</th>
+        <th>Grade</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  
+
+  <div class="fixed-bottom">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem; width: 100%;">
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <label for="subjectCount">Enter number of subjects:</label>
+        <input type="number" id="subjectCount" min="1" placeholder="No. of Subjects" autofocus>
+        <button onclick="addOneRow()" style="background: #27ae60; color: white; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center;">+</button>
+      </div>
+      
+      <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+        <input type="number" id="quickCredit" placeholder="Enter Credit & Hit Enter">
+        <button onclick="calculateCGPA()" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 12px 24px; border-radius: 25px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(102,126,234,0.3); display: flex; align-items: center; gap: 8px; height: 48px;">✅ Calculate CGPA</button>
+        <button onclick="downloadPDF()" id="downloadBtn" style="display: none; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 12px 24px; border-radius: 25px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(102,126,234,0.3); align-items: center; gap: 8px; height: 48px;">
+          <svg width="20" height="20" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <!-- Gradient definitions -->
+            <defs>
+              <linearGradient id="bgGradientBtn" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+              </linearGradient>
+              <linearGradient id="chartGradientBtn" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#ff6b6b;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#feca57;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#48dbfb;stop-opacity:1" />
+              </linearGradient>
+              <radialGradient id="glowGradientBtn" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.3" />
+                <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
+              </radialGradient>
+            </defs>
+            
+            <!-- Background with gradient -->
+            <rect width="200" height="200" rx="25" fill="url(#bgGradientBtn)"/>
+            
+            <!-- Glow effect -->
+            <circle cx="100" cy="100" r="80" fill="url(#glowGradientBtn)"/>
+            
+            <!-- Main C shape with 3D effect -->
+            <path d="M 70 50 Q 50 50 50 70 L 50 130 Q 50 150 70 150 L 90 150 Q 110 150 110 130 L 110 125 L 100 125 L 100 135 Q 100 140 95 140 L 70 140 Q 65 140 65 135 L 65 65 Q 65 60 70 60 L 95 60 Q 100 60 100 65 L 100 75 L 110 75 L 110 70 Q 110 50 90 50 L 70 50 Z" fill="#ffffff" opacity="0.9"/>
+            
+            <!-- Dynamic chart bars -->
+            <rect x="120" y="90" width="8" height="20" rx="4" fill="url(#chartGradientBtn)">
+              <animate attributeName="height" values="20;35;20" dur="2s" repeatCount="indefinite"/>
+              <animate attributeName="y" values="90;75;90" dur="2s" repeatCount="indefinite"/>
+            </rect>
+            <rect x="132" y="80" width="8" height="30" rx="4" fill="url(#chartGradientBtn)">
+              <animate attributeName="height" values="30;45;30" dur="2.5s" repeatCount="indefinite"/>
+              <animate attributeName="y" values="80;65;80" dur="2.5s" repeatCount="indefinite"/>
+            </rect>
+            <rect x="144" y="70" width="8" height="40" rx="4" fill="url(#chartGradientBtn)">
+              <animate attributeName="height" values="40;55;40" dur="3s" repeatCount="indefinite"/>
+              <animate attributeName="y" values="70;55;70" dur="3s" repeatCount="indefinite"/>
+            </rect>
+            
+            <!-- Floating grade points -->
+            <circle cx="130" cy="45" r="4" fill="#ff6b6b" opacity="0.8">
+              <animate attributeName="cy" values="45;35;45" dur="3s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="145" cy="40" r="3" fill="#feca57" opacity="0.7">
+              <animate attributeName="cy" values="40;30;40" dur="2.5s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.7;1;0.7" dur="2.5s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="160" cy="50" r="2" fill="#48dbfb" opacity="0.6">
+              <animate attributeName="cy" values="50;40;50" dur="2s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            
+            <!-- Star achievement indicators -->
+            <polygon points="125,120 127,126 133,126 128,130 130,136 125,132 120,136 122,130 117,126 123,126" fill="#ffd700">
+              <animateTransform attributeName="transform" type="rotate" values="0 125 128;360 125 128" dur="4s" repeatCount="indefinite"/>
+            </polygon>
+            <polygon points="145,125 146,128 149,128 147,130 148,133 145,131 142,133 143,130 141,128 144,128" fill="#ffd700" opacity="0.8">
+              <animateTransform attributeName="transform" type="rotate" values="0 145 128;-360 145 128" dur="5s" repeatCount="indefinite"/>
+            </polygon>
+            
+            <!-- Progress arc -->
+            <path d="M 50 100 A 50 50 0 0 1 150 100" stroke="#ffffff" stroke-width="3" fill="none" opacity="0.6" stroke-dasharray="5,5">
+              <animate attributeName="stroke-dashoffset" values="0;-20" dur="1s" repeatCount="indefinite"/>
+            </path>
+            
+            <!-- Modern typography -->
+            <text x="100" y="180" font-family="Arial, sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="#ffffff">CGPA</text>
+            <text x="100" y="195" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#ffffff" opacity="0.8">GRADE POINT AVERAGE</text>
+            
+            <!-- Subtle geometric patterns -->
+            <circle cx="40" cy="40" r="2" fill="#ffffff" opacity="0.3"/>
+            <circle cx="160" cy="160" r="2" fill="#ffffff" opacity="0.3"/>
+            <rect x="35" y="160" width="3" height="3" fill="#ffffff" opacity="0.2"/>
+            <rect x="160" y="35" width="3" height="3" fill="#ffffff" opacity="0.2"/>
+          </svg>
+          Download PDF
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="output">Your result will appear here...</div>
+
+  <!-- Website Footer -->
+  <div class="website-footer">
+    <div class="footer-content">
+      <span><strong>Made with <span class="footer-heart">❤️</span> by Rohit</strong></span>
+      <span><strong>|</strong></span>
+      <span><strong>© 2025 CGPA Calculator</strong></span>
+      <span><strong>|</strong></span>
+      <span><strong>All Rights Reserved</strong></span>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

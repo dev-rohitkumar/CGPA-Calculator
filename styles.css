@@ -1,0 +1,186 @@
+/* CGPA Calculator Styles */
+* { 
+  box-sizing: border-box; 
+  font-family: 'Poppins', sans-serif; 
+}
+
+body {
+  margin: 0; 
+  padding-bottom: 200px;
+  background: linear-gradient(135deg, #667eea, #764ba2, #e0f7fa);
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+  min-height: 100vh;
+}
+
+h1 { 
+  color: #ffffff; 
+  font-size: 2.5rem; 
+  margin-top: 2rem; 
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.icon-container {
+  background: rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 10px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: transform 0.3s ease;
+}
+
+.icon-container:hover {
+  transform: scale(1.05);
+}
+
+table {
+  border-collapse: collapse; 
+  width: 90%; 
+  max-width: 800px;
+  margin: 2rem 0; 
+  background: rgba(255,255,255,0.95); 
+  box-shadow: 0 12px 24px rgba(102,126,234,0.2);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+th, td {
+  border: 1px solid rgba(102,126,234,0.1); 
+  padding: 12px; 
+  text-align: center;
+}
+
+th { 
+  background: linear-gradient(135deg, #667eea, #764ba2); 
+  color: white; 
+  font-weight: 600;
+}
+
+input, select {
+  padding: 8px; 
+  width: 100%; 
+  box-sizing: border-box;
+  border: 2px solid rgba(102,126,234,0.2);
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+input:focus, select:focus {
+  border-color: #667eea;
+  outline: none;
+  box-shadow: 0 0 10px rgba(102,126,234,0.3);
+}
+
+#output {
+  margin-top: 2rem; 
+  font-size: 18px; 
+  color: #ffffff; 
+  white-space: pre-line;
+  background: rgba(255,255,255,0.1);
+  padding: 20px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.fixed-bottom {
+  position: fixed;
+  bottom: 60px; 
+  left: 0; 
+  right: 0;
+  background: rgba(255,255,255,0.95);
+  border-top: 1px solid rgba(102,126,234,0.2);
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  padding: 1rem;
+  box-shadow: 0 -8px 32px rgba(102,126,234,0.2);
+  z-index: 999;
+  backdrop-filter: blur(10px);
+}
+
+.fixed-bottom input[type="number"] {
+  width: 150px; 
+  padding: 10px; 
+  font-size: 14px;
+  border: 2px solid rgba(102,126,234,0.2);
+  border-radius: 8px;
+}
+
+.fixed-bottom button {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102,126,234,0.3);
+}
+
+.fixed-bottom button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102,126,234,0.4);
+}
+
+.fixed-bottom label {
+  color: #667eea;
+  font-weight: 600;
+}
+
+.website-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  text-align: center;
+  padding: 15px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 0 -4px 20px rgba(102,126,234,0.3);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.footer-heart {
+  color: #e74c3c;
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.footer-link {
+  color: #feca57;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #ff6b6b;
+}
